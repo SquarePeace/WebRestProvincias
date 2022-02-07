@@ -14,8 +14,8 @@ END
 GO
 
 CREATE TABLE Provincias(
-    ProvinciaID INT
-    , Nombre VARCHAR(45) DEFAULT NULL
+    ProvinciaID BIGINT NOT NULL
+    , Nombre VARCHAR(255) DEFAULT NULL
     , CONSTRAINT Provincia_PK PRIMARY KEY CLUSTERED (ProvinciaID ASC)
 )
 GO
@@ -57,8 +57,8 @@ GO
 
 
 CREATE TABLE Municipios(
-    MunicipioID INT NOT NULL
-    , Nombre VARCHAR(45) DEFAULT NULL
+    MunicipioID BIGINT NOT NULL
+    , Nombre VARCHAR(255) DEFAULT NULL
     , ProvinciaID INT DEFAULT NULL
     , PRIMARY KEY (MunicipioID)
     , CONSTRAINT ProvinciaID_idx FOREIGN KEY (ProvinciaID) REFERENCES Provincias (ProvinciaID)

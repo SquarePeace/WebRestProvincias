@@ -1,19 +1,28 @@
 package com.example.demo.Provincia;
 
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@Entity(name = "Provincias")
+import com.example.demo.Municipio.Municipio;
+
+@Entity
+@Table(name = "Provincias")
 public class Provincia {
-
+  
+  @OneToMany(mappedBy="Provincias")
+  public Set<Municipio> municipios;
+    
   @Id
   @Column(name = "provinciaID")
   public Long provinciaID;
 
-  @Column(name = "Nombre", columnDefinition = "VARCHAR(45)")
+  @Column(name = "Nombre")
   public String Nombre;
 
   public Provincia() {}

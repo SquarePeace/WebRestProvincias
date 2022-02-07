@@ -4,16 +4,26 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.example.demo.Provincia.Provincia;
 
 
-@Entity(name="Municipios")
-public class Municipio {
-    
+  @Entity
+  @Table(name="Municipios")
+  public class Municipio {
+  
+  @ManyToOne
+  @JoinColumn(name="provinciaID", nullable=false)
+  public Provincia provincia;
+
   @Id
   @Column(name="MunicipioID")
   public Long MunicipioID;
 
-  @Column(name = "Nombre", columnDefinition = "VARCHAR(45)")
+  @Column(name = "Nombre")
   public String Nombre;
 
     Municipio() {}
