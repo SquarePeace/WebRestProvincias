@@ -2,23 +2,27 @@ package com.example.demo.Provincia;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity(name = "Provincias")
-class Provincia {
+public class Provincia {
 
-  private Long provinciaID;
-  private String Nombre;
+  @Id
+  @Column(name = "provinciaID")
+  public Long provinciaID;
 
-  Provincia() {}
+  @Column(name = "Nombre", columnDefinition = "VARCHAR(45)")
+  public String Nombre;
 
-  Provincia(Long provinciaID, String Nombre) {
+  public Provincia() {}
+
+  public Provincia(Long provinciaID, String Nombre) {
     this.provinciaID = provinciaID;
     this.Nombre = Nombre;
   }
-
-  @Id
+  
   public Long getProvinciaID() {
     return this.provinciaID;
   }
