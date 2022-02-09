@@ -1,0 +1,27 @@
+version: "3.4"
+
+services:
+  db:
+    container_name: SqlServer
+    image: mcr.microsoft.com/mssql/server:2019-CU10-ubuntu-16.04
+    restart: always
+    user: root
+    volumes:
+      - mssql-data:/var/opt/mssql/data
+      - mssql-data:/var/opt/mssql/log
+      - mssql-data:/var/opt/mssql/secrets
+    environment:
+      - SA_PASSWORD=${PASSWORD}
+      - ACCEPT_EULA=${EULA}
+      - MSSQL_PID=${PID}
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+        reservations:
+          memory: 1G
+    ports:
+      - 1433:1433
+
+volumes:
+  mssql-data:
