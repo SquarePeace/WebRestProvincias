@@ -1,6 +1,7 @@
-package com.example.demo;
+package com.example.demo.DistritoMunicipal;
 
 import com.example.demo.Municipio.Municipio;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -14,6 +15,7 @@ public class DistritoMunicipal {
     @Column(name = "Nombre", length = 45)
     private String nombre;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MunicipioID")
     private Municipio municipios;
