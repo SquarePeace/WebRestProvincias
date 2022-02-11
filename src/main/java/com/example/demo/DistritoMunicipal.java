@@ -1,31 +1,28 @@
-package com.example.demo.Provincia;
+package com.example.demo;
 
 import com.example.demo.Municipio.Municipio;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
-@Table(name = "Provincias")
-public class Provincia {
+@Table(name = "DistritosMunicipales")
+public class DistritoMunicipal {
     @Id
-    @Column(name = "ProvinciaID", nullable = false)
+    @Column(name = "DistritoID", nullable = false)
     private Integer id;
 
     @Column(name = "Nombre", length = 45)
     private String nombre;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "provinciaID")
-    private Set<Municipio> municipios = new LinkedHashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MunicipioID")
+    private Municipio municipios;
 
-    public Set<Municipio> getMunicipios() {
+    public Municipio getMunicipios() {
         return municipios;
     }
 
-    public void setMunicipios(Set<Municipio> municipios) {
+    public void setMunicipios(Municipio municipios) {
         this.municipios = municipios;
     }
 

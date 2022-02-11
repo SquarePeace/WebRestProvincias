@@ -21,7 +21,7 @@ class MunicipioController {
   }
   
   @GetMapping("/provincias/{id}/municipios")
-  Municipio one(@PathVariable Long id) {
+  Municipio one(@PathVariable Integer id) {
     
     return repository.findById(id)
       .orElseThrow(() -> new MunicipioNotFoundException(id));

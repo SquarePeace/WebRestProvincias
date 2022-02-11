@@ -23,7 +23,7 @@ class ProvinciaController {
   }
   
   @GetMapping("/provincia/{id}")
-  Provincia one(@PathVariable Long id) {
+  Provincia one(@PathVariable Integer id) {
     
     return repository.findById(id)
       .orElseThrow(() -> new ProvinciaNotFoundException(id));

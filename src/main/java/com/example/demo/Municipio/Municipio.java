@@ -1,74 +1,48 @@
 package com.example.demo.Municipio;
 
-import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
 import com.example.demo.Provincia.Provincia;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import javax.persistence.*;
 
-  @Entity
-  @Table(name="Municipios")
-  public class Municipio {
-  
-  @ManyToOne
-  @JoinColumn(name="provinciaID", nullable=false)
-  public Provincia provincia;
+@Entity
+@Table(name = "Municipios")
+public class Municipio {
+    @Id
+    @Column(name = "MunicipioID", nullable = false)
+    private Integer id;
 
-  @Id
-  @Column(name="MunicipioID")
-  public Long MunicipioID;
+    @Column(name = "Nombre", length = 45)
+    private String nombre;
 
-  @Column(name = "Nombre")
-  public String Nombre;
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ProvinciaID")
+    private Provincia provinciaID;
 
-    Municipio() {}
-    
-    Municipio(Long MunicipioID, String Nombre){
-       this.MunicipioID = MunicipioID;
-       this.Nombre = Nombre; 
+    public Provincia getProvinciaID() {
+        return provinciaID;
     }
-  
-  public Long getMunicipioID() {
-    return this.MunicipioID;
-  }
 
-  
-  public String getNombre() {
-    return this.Nombre;
-  }
+    public void setProvinciaID(Provincia provinciaID) {
+        this.provinciaID = provinciaID;
+    }
 
-  public void setMunicipioID(Long MunicipioID) {
-    this.MunicipioID = MunicipioID;
-  }
+    public Integer getId() {
+        return id;
+    }
 
-  public void setNombre(String Nombre) {
-    this.Nombre = Nombre;
-  }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-  @Override
-  public boolean equals(Object o) {
+    public String getNombre() {
+        return nombre;
+    }
 
-    if (this == o)
-      return true;
-    if (!(o instanceof Municipio))
-      return false;
-      Municipio municipio = (Municipio) o;
-    return Objects.equals(this.MunicipioID, municipio.MunicipioID) && Objects.equals(this.Nombre, municipio.Nombre);
-  }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(this.MunicipioID, this.Nombre);
-  }
-
-  @Override
-  public String toString() {
-    return "Municipio{" + "id=" + this.MunicipioID + ", name='" + this.Nombre +'}';
-  }
-
+    //TODO Reverse Engineering! Migrate other columns to the entity
 }
