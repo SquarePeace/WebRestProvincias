@@ -463,3 +463,14 @@ INSERT INTO DistritosMunicipales VALUES
     ,(227,'Jaibón',155)
     ,(228,'La Caya',155)
 GO
+
+SELECT * FROM dbo.Provincias;
+
+SELECT * FROM  dbo.DistritosMunicipales;
+
+SELECT * FROM  dbo.Municipios;
+
+SELECT DistritoID as codigo, Nombre FROM DistritosMunicipales where MunicipioID in (select MunicipioID from Municipios where ProvinciaID = 6);
+
+SELECT DistritoID as codigo, Nombre FROM dbo.DistritosMunicipales dm WHERE  dm .MunicipioID IN (SELECT MunicipioID FROM dbo.Municipios m WHERE m.ProvinciaID = 6)
+
