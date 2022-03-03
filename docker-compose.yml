@@ -1,9 +1,18 @@
 version: "3.4"
 
 services:
+  app:
+    container_name: WebRestProvincias
+    build: .
+    ports:
+      - 8090:8090
+    network_mode: 'host'
+    depends_on:
+      - db
   db:
     container_name: SqlServer
-    image: mcr.microsoft.com/mssql/server:2019-CU10-ubuntu-16.04
+    build:
+        context: ./db/
     restart: always
     user: root
     volumes:
@@ -22,6 +31,5 @@ services:
           memory: 1G
     ports:
       - 1433:1433
-
 volumes:
   mssql-data:
