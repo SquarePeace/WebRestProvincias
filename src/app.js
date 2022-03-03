@@ -1,5 +1,6 @@
 var  ProvinciaService = require('./Services/Provincia');
-var  Provincia = require('./Models/Provincia');
+var  MunicipioService = require('./Services/Municipio');
+var  DistritoService = require('./Services/Distrito');
 var  express = require('express');
 var  bodyParser = require('body-parser');
 var  cors = require('cors');
@@ -16,13 +17,15 @@ router.use((request, response, next) => {
     next();
 });
 
+// Provincias routers 
+
 router.route('/provincias').get((request, response) => {
     ProvinciaService.getProvincias().then((data) => {
     response.json(data[0]);
     })
 })
 
-router.route('/provincia/:id').get((request, response) => {
+router.route('/provincias/:id').get((request, response) => {
     ProvinciaService.getProvincia(request.params.id).then((data) => {
     response.json(data[0]);
     })
@@ -36,6 +39,40 @@ router.route('/provincias/:id/municipios').get((request, response) => {
 
 router.route('/provincias/:id/distritos_municipales').get((request, response) => {
     ProvinciaService.findDistritoByProvincia(request.params.id).then((data) => {
+    response.json(data[0]);
+    })
+})
+
+// Municipios routers
+
+router.route('/municipios').get((request, response) => {
+    MunicipioService.getMunicipios().then((data) => {
+    response.json(data[0]);
+    })
+})
+
+router.route('/municipios/:id').get((request, response) => {
+    MunicipioService.getMunicipio(request.params.id).then((data) => {
+    response.json(data[0]);
+    })
+})
+
+router.route('/municipios/:id/distritos_municipales').get((request, response) => {
+    MunicipioService.findDistritosByMunicipio(request.params.id).then((data) => {
+    response.json(data[0]);
+    })
+})
+
+//// Distritos Municipales routers
+
+router.route('/distritos_municipales').get((request, response) => {
+    DistritoService.getDistritos().then((data) => {
+    response.json(data[0]);
+    })
+})
+
+router.route('/distritos_municipales/:id').get((request, response) => {
+    DistritoService.getDistrito(request.params.id).then((data) => {
     response.json(data[0]);
     })
 })
