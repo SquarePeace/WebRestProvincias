@@ -6,7 +6,6 @@ services:
     build: .
     ports:
       - 8090:8090
-    network_mode: 'host'
     depends_on:
       - db
   db:
