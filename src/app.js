@@ -81,3 +81,4 @@ var  port = process.env.PORT || 8090;
 app.listen(port);
 console.log('API is runnning at ' + port);
 
+module.exports = app;
