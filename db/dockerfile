@@ -6,6 +6,8 @@ COPY setup.sql setup.sql
 COPY import-data.sh import-data.sh
 COPY entrypoint.sh entrypoint.sh
 
-RUN chmod +x entrypoint.sh
+RUN chmod +x import-data.sh
 
-CMD /bin/bash ./entrypoint.sh
+USER mssql
+
+ENTRYPOINT /bin/bash ./entrypoint.sh
